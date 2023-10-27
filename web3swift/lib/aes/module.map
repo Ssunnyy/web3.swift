@@ -1,4 +1,4 @@
 module aes [system][extern_c] {
-    header "include/aes.h"
+    header "include/aes1.h"
     export *
 }
