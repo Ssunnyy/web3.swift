@@ -6,6 +6,11 @@
 import BigInt
 import Foundation
 
+public enum ParamType {
+    case string
+    case address
+}
+
 public protocol ABIFunction: ABIFunctionEncodable {
     var gasPrice: BigUInt? { get }
     var gasLimit: BigUInt? { get }
