@@ -166,6 +166,16 @@ extension Multicall {
             }()
             self.handler = handler
         }
+        
+        public init<Function: ABIMultiFunction>(function: Function, handler: ((Output) throws -> Void)? = nil) throws {
+            self.target = function.contract
+            self.encodedFunction = try {
+                let encoder = ABIFunctionEncoder(function.funcName)
+                try function.encode(to: encoder)
+                return try encoder.encoded()
+            }()
+            self.handler = handler
+        }
 
         public init?(values: [ABIDecoder.DecodedValue]) throws {
             self.target = try values[0].decoded()
