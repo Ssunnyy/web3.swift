@@ -9,6 +9,7 @@ import Foundation
 public enum ParamType {
     case string
     case address
+    case uint
 }
 
 public protocol ABIMultiFunction: ABIFunction {
