@@ -22,9 +22,18 @@ extension Multicall {
         case common
         static let goerliAddress: EthereumAddress = "0x77dCa2C955b15e9dE4dbBCf1246B4B85b651e50e"
         static let mainnetAddress: EthereumAddress = "0xF34D2Cb31175a51B23fb6e08cA06d7208FaD379F"
-        var multicall2Address: EthereumAddress  {
+        var matchMulticallAddress: EthereumAddress  { // 9001
             return  self.getEnvironmentDebug() ? EthereumAddress("0xaF20cB65A32e3ac0890A81191b9b211965f6A5cC") : EthereumAddress("0xfABB392F116420b817B639D59bDbfCBbC505487E")
         }
+        
+        var tomoMulticallAddress: EthereumAddress  { // 88
+            return   EthereumAddress("0xE498F5Eb9403Fe5dbd1Fc2aCDa4799A175C2dcF2")
+        }
+        
+        var openBNBMulticallAddress: EthereumAddress { // 204
+            return  self.getEnvironmentDebug() ?  EthereumAddress("0x6443cB3682364722d10D7930302ADCC5daF84F79") :  EthereumAddress("0xE76d04A96Eb67f75d2Fc5d2b17f22f79b11ce902")
+        }
+        
         
         public func getEnvironmentDebug() -> Bool {
             guard let debug = multicallContainer.multiCallDelegate?.getEnvironmentIsDebug() else {
@@ -34,15 +43,19 @@ extension Multicall {
         }
 
         public func registryAddress(for network: EthereumNetwork) -> EthereumAddress? {
-            return  self.multicall2Address
-//            switch network {
-//            case .mainnet:
-//                return Self.mainnetAddress
-//            case .goerli:
-//                return Self.goerliAddress
-//            default:
-//                return nil
-//            }
+            switch network {
+            case .custom(let str):
+                if str == "9001" {
+                    return matchMulticallAddress
+                } else if str == "88" {
+                    return tomoMulticallAddress
+                } else if str == "204" {
+                    return openBNBMulticallAddress
+                }
+            default:
+                return nil
+            }
+            return nil
         }
 
         public enum Functions {
@@ -112,4 +125,5 @@ extension Multicall {
     
    
 }
+
 
