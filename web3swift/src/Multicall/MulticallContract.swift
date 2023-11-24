@@ -33,6 +33,9 @@ extension Multicall {
         var openBNBMulticallAddress: EthereumAddress { // 204
             return  self.getEnvironmentDebug() ?  EthereumAddress("0x6443cB3682364722d10D7930302ADCC5daF84F79") :  EthereumAddress("0xE76d04A96Eb67f75d2Fc5d2b17f22f79b11ce902")
         }
+        var polygonMulticallAddress: EthereumAddress { // 137
+            return "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
         
         
         public func getEnvironmentDebug() -> Bool {
@@ -51,6 +54,8 @@ extension Multicall {
                     return tomoMulticallAddress
                 } else if str == "204" {
                     return openBNBMulticallAddress
+                } else if str == "137" {
+                    return polygonMulticallAddress
                 }
             default:
                 return nil
@@ -125,5 +130,6 @@ extension Multicall {
     
    
 }
+
 
 
