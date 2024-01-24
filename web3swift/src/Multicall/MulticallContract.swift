@@ -51,7 +51,7 @@ extension Multicall {
         public func registryAddress(for network: EthereumNetwork) -> EthereumAddress? {
             switch network {
             case .custom(let str):
-                if str == "9001" {
+                if str == "9001" || str == "698" {
                     return matchMulticallAddress
                 } else if str == "88" {
                     return tomoMulticallAddress
